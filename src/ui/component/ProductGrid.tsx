@@ -3,6 +3,21 @@ import { Grid, Paper, Typography, Button } from '@mui/material';
 import { Link } from 'react-router-dom';
 import {styled} from "@mui/material/styles";
 
+const ImageWrapper = styled('div')({
+    overflow: 'hidden',
+    position: 'relative',
+    transition: 'transform 0.5s ease',
+    '&:hover img': {
+        transform: 'scale(1.2)',
+    },
+});
+
+const ProductImage = styled('img')({
+    width: '100%',
+    height: 'auto',
+    transition: 'transform 0.5s ease',
+});
+
 interface Product {
     pid: number;
     name: string;
@@ -32,7 +47,9 @@ export default function ProductGrid({ products }: ProductGridProps) {
                 <Grid item key={index} xs={12} sm={6} md={4}>
                     <Paper style={{ display: 'flex', flexDirection: 'column', alignItems: 'center' }}>
                         {/* 商品圖片 */}
-                        <img src={product.imageUrl} alt={product.name} />
+                        <ImageWrapper>
+                            <ProductImage src={product.imageUrl} alt={product.name} />
+                        </ImageWrapper>
 
                         <Typography variant="subtitle1" align="center">{product.name}</Typography>
 
